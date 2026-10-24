@@ -4,7 +4,7 @@
 
 A pixel whale girl who lives right next to the message composer in the DSH Web UI.
 
-Version 2.5.0 · package `dsh-cutewhale-h`
+Version 2.5.2 · package `dsh-cutewhale-h`
 
 ---
 
@@ -23,17 +23,17 @@ Version 2.5.0 · package `dsh-cutewhale-h`
 | 余额低于 5 元 | 收工累趴，弹「老大~家里没白饭啦~」或「饿饿~饭饭~」 |
 | 闲置 2.5 分钟 | 睡着，鼻涕泡从小到大再啪地破掉，六帧循环 |
 | 点睡着的她 | 「！」→ 向右看 → 向左看 → 回到待机，顺带问「鲸鲸！怎么啦！」 |
-| 点她 | 弹出菜单：休息 / 上工、大小、位置、输入时唤醒 |
+| 点她 | 弹出菜单：休息 / 上工、大小、位置、输入时唤醒、给个 star |
 
 ### 安装
 
-1. 解压得到 `dsh-cutewhale-h-2.5.0` 文件夹
+1. 解压得到 `dsh-cutewhale-h-2.5.2` 文件夹
 2. 在 DSH 的插件管理里把这个文件夹作为本地 bundle 安装，包名 `dsh-cutewhale-h`
-3. 想让她对余额有反应，需要同时安装 `dsh-whale-widget` 余额挂件
+3. 余额由插件自带的宿主路由读取，不再依赖 `dsh-whale-widget`；如果 DSH 是账号登录模式、取不到 API key，可以再装挂件兜底
 
 ### 设置
 
-- 大小：小 0.8 / 中 1 / 大 1.2
+- 大小：小 0.6 / 中 0.8 / 大 1.0
 - 位置：输入框左边或右边
 - 输入时唤醒：默认关闭，开启后敲键盘会把她叫醒
 - 设置保存在浏览器的 `dsh-whale-maid:settings`
@@ -41,7 +41,7 @@ Version 2.5.0 · package `dsh-cutewhale-h`
 ### 文件
 
 ```
-dsh-cutewhale-h-2.5.0/
+dsh-cutewhale-h-2.5.2/
 ├── package.json        # bundle 描述，包名 dsh-cutewhale-h
 ├── index.js            # 宿主半，客户端模块负责渲染
 ├── client.js           # 打包好的客户端插件，贴图已内联
@@ -55,7 +55,7 @@ dsh-cutewhale-h-2.5.0/
 
 ### 说明
 
-像素素材为自己手切与二创，仅供个人使用。版本 2.5.0。
+像素素材为自己手切与二创，仅供个人使用。版本 2.5.2。
 
 ---
 
@@ -98,17 +98,17 @@ If any original author objects to this inclusion, contact me and I will change o
 | Balance below 5 CNY | Collapses after the turn with a hungry bubble |
 | 2.5 idle minutes | Falls asleep with a snot bubble that inflates and pops, six frames |
 | Click while asleep | Exclamation, glance right, glance left, then asks “Whale whale! What is it?” |
-| Click her | Menu: rest / work, size, side, wake on typing |
+| Click her | Menu: rest / work, size, side, wake on typing, give a star |
 
 ### Install
 
-1. Unzip to get the `dsh-cutewhale-h-2.5.0` folder
+1. Unzip to get the `dsh-cutewhale-h-2.5.2` folder
 2. In DSH plugin management, install that folder as a local bundle; the package name is `dsh-cutewhale-h`
-3. For the balance reactions, also install the `dsh-whale-widget` balance widget
+3. The balance comes from the bundle's own host route, so `dsh-whale-widget` is no longer required; account-login setups that have no API key can still add the widget as a fallback
 
 ### Settings
 
-- Size: small 0.8 / medium 1 / large 1.2
+- Size: small 0.6 / medium 0.8 / large 1.0
 - Side: left or right of the composer
 - Wake on typing: off by default; when on, typing in the composer wakes her
 - Settings are stored in the browser under `dsh-whale-maid:settings`
@@ -116,7 +116,7 @@ If any original author objects to this inclusion, contact me and I will change o
 ### Files
 
 ```
-dsh-cutewhale-h-2.5.0/
+dsh-cutewhale-h-2.5.2/
 ├── package.json        # bundle manifest, package name dsh-cutewhale-h
 ├── index.js            # host half; the client module does the rendering
 ├── client.js           # built client plugin with sprites inlined
@@ -130,4 +130,4 @@ dsh-cutewhale-h-2.5.0/
 
 ### Notes
 
-The pixel art was hand cut and reworked from community material, for personal use only. Version 2.5.0.
+The pixel art was hand cut and reworked from community material, for personal use only. Version 2.5.2.
