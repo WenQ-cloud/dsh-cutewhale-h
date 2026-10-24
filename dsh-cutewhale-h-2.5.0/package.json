@@ -1,0 +1,33 @@
+{
+  "name": "dsh-cutewhale-h",
+  "version": "2.5.0",
+  "private": true,
+  "type": "module",
+  "description": "Pixel whale maid living next to the message composer: alert, thinking, writing, telescope panning, eating with hearts, sneaky snacks with a vertical bounce, sleeping snot-bubble animation, wake-up glances and a 2.5-minute nap timer.",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  }
+}
