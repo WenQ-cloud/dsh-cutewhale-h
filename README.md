@@ -59,6 +59,30 @@ dsh-cutewhale-h-2.5.0/
 
 ---
 
+## 版权与许可 / Copyright & License
+
+本插件是非商业的个人二创，像素形象来自社区流传的「女仆鲸鱼娘」，授权链如下：
+
+- 原创角色「溟月」：**上善无形**
+- 「女仆鲸鱼娘」形象二创：**ZipZipPipe**
+- 本插件所用像素图：**Oo肥鱼O**
+
+素材部分按社区约定遵循 **CC BY-NC-SA 4.0**：署名、非商业使用、以相同方式共享。代码部分以 **MIT** 许可发布，见 [LICENSE](LICENSE)。完整的素材声明见 [NOTICE.md](NOTICE.md)。
+
+如果任何一位原作者认为这里的收录不妥，请联系我，我会立即修改或删除相关内容。
+
+The pixel art in this plugin is a non-commercial derivative of the community 「maid whale girl」design:
+
+- Original character 「溟月」: **上善无形**
+- Maid whale girl design: **ZipZipPipe**
+- Pixel art used here: **Oo肥鱼O**
+
+The artwork is shared under **CC BY-NC-SA 4.0** — attribution, non-commercial, share-alike. The code is released under the **MIT** license, see [LICENSE](LICENSE). Full credits are in [NOTICE.md](NOTICE.md).
+
+If any original author objects to this inclusion, contact me and I will change or remove it right away.
+
+---
+
 ## English
 
 ### What she does
