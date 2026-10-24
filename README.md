@@ -4,7 +4,7 @@
 
 A pixel whale girl who lives right next to the message composer in the DSH Web UI.
 
-Version 2.5.3 · package `dsh-cutewhale-h`
+Version 2.5.4 · package `dsh-cutewhale-h`
 
 ---
 
@@ -27,7 +27,7 @@ Version 2.5.3 · package `dsh-cutewhale-h`
 
 ### 安装
 
-1. 解压得到 `dsh-cutewhale-h-2.5.3` 文件夹
+1. 解压得到 `dsh-cutewhale-h-2.5.4` 文件夹
 2. 在 DSH 的插件管理里把这个文件夹作为本地 bundle 安装，包名 `dsh-cutewhale-h`
 3. 余额由插件自带的宿主路由读取，不再依赖 `dsh-whale-widget`；如果 DSH 是账号登录模式、取不到 API key，可以再装挂件兜底
 
@@ -41,7 +41,7 @@ Version 2.5.3 · package `dsh-cutewhale-h`
 ### 文件
 
 ```
-dsh-cutewhale-h-2.5.3/
+dsh-cutewhale-h-2.5.4/
 ├── package.json        # bundle 描述，包名 dsh-cutewhale-h
 ├── index.js            # 宿主半，客户端模块负责渲染
 ├── client.js           # 打包好的客户端插件，贴图已内联
@@ -55,7 +55,7 @@ dsh-cutewhale-h-2.5.3/
 
 ### 说明
 
-像素素材为自己手切与二创，仅供个人使用。版本 2.5.3。
+像素素材为个人二创，遵循 CC BY-NC-SA 4.0：保留署名、禁止商业使用、以相同方式共享。代码以 MIT 许可发布。本项目不接收赞助或付费，也不授权任何商业用途。版本 2.5.4。
 
 ---
 
@@ -102,7 +102,7 @@ If any original author objects to this inclusion, contact me and I will change o
 
 ### Install
 
-1. Unzip to get the `dsh-cutewhale-h-2.5.3` folder
+1. Unzip to get the `dsh-cutewhale-h-2.5.4` folder
 2. In DSH plugin management, install that folder as a local bundle; the package name is `dsh-cutewhale-h`
 3. The balance comes from the bundle's own host route, so `dsh-whale-widget` is no longer required; account-login setups that have no API key can still add the widget as a fallback
 
@@ -116,7 +116,7 @@ If any original author objects to this inclusion, contact me and I will change o
 ### Files
 
 ```
-dsh-cutewhale-h-2.5.3/
+dsh-cutewhale-h-2.5.4/
 ├── package.json        # bundle manifest, package name dsh-cutewhale-h
 ├── index.js            # host half; the client module does the rendering
 ├── client.js           # built client plugin with sprites inlined
@@ -130,4 +130,4 @@ dsh-cutewhale-h-2.5.3/
 
 ### Notes
 
-The pixel art was hand cut and reworked from community material, for personal use only. Version 2.5.3.
+The pixel art is a personal derivative shared under CC BY-NC-SA 4.0: attribution, non-commercial use, share-alike. The code is MIT licensed. This project takes no donations or payments and grants no commercial rights. Version 2.5.4.
