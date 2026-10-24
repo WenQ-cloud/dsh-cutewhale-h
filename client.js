@@ -767,7 +767,7 @@ return { buildRects: buildRects, W: ART_W, H: ART_H };
               persist({ typingWakes: next });
             },
           }, `输入时唤醒 ${typingWakes ? '开' : '关'}`),
-          h('div', { className: 'wm-caption' }, '无需VPN'),
+          h('div', { className: 'wm-caption' }, '需要VPN'),
           h('button', {
             type: 'button',
             className: 'wm-star',
