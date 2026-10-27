@@ -297,7 +297,7 @@ return { buildRects: buildRects, W: ART_W, H: ART_H };
     const REPO_URL = 'https://github.com/WenQ-cloud/dsh-cutewhale-h';
 
     const CSS = [
-      '.wm-root{position:absolute;bottom:calc(8px - var(--dsh-composer-height, 96px));z-index:3;pointer-events:none;line-height:0;}',
+      '.wm-root{position:absolute;z-index:3;pointer-events:none;line-height:0;}',
       '.wm-figure{pointer-events:auto;cursor:pointer;display:block;position:relative;transform-origin:bottom center;filter:drop-shadow(0 2px 3px rgba(20,32,64,.18));}',
       '.wm-img{display:block;width:100%;height:100%;transform-origin:center;transition:transform .22s ease;}',
       '.wm-figure svg{display:block;}',
@@ -362,6 +362,7 @@ return { buildRects: buildRects, W: ART_W, H: ART_H };
       const [eatKind, setEatKind] = React.useState('meal');
       const [now, setNow] = React.useState(() => Date.now());
       const rootRef = React.useRef(null);
+      const [cardHeight, setCardHeight] = React.useState(96);
       const prevRunning = React.useRef(undefined);
       const turnStart = React.useRef(0);
 
@@ -590,6 +591,25 @@ return { buildRects: buildRects, W: ART_W, H: ART_H };
         };
       }, [menuOpen]);
 
+      // Anchor to the composer card itself, not to --dsh-composer-height: that
+      // variable measures the whole composer seat, todo dock included, so using
+      // it pushed the mascot below the card whenever the task list appeared and
+      // stretched the message scroll area with it.
+      React.useEffect(() => {
+        const root = rootRef.current;
+        if (root === null) return undefined;
+        const card = root.closest('[data-composer-card]');
+        if (card === null || typeof ResizeObserver === 'undefined') return undefined;
+        const read = () => {
+          const height = card.getBoundingClientRect().height;
+          if (height > 0) setCardHeight(Math.round(height));
+        };
+        read();
+        const observer = new ResizeObserver(read);
+        observer.observe(card);
+        return () => observer.disconnect();
+      }, []);
+
       const busy = running === true;
       const searchActive = /web_search|web_fetch/.test(tools);
       const agentsActive = /spawn_teammate|subagent|workflow/.test(tools);
@@ -711,9 +731,15 @@ return { buildRects: buildRects, W: ART_W, H: ART_H };
         }
       };
 
+      // Bottom offset is measured from the composer card's top edge, which is
+      // where the overlay anchor sits, so negative values put the mascot's feet
+      // near the card's bottom edge.
+      const rootBottom = (restingMode ? 26 : 8) - cardHeight;
       const sideStyle = restingMode
-        ? { right: '100%', bottom: 'calc(26px - var(--dsh-composer-height, 96px))' }
-        : side === 'left' ? { right: 'calc(100% + 8px)' } : { left: 'calc(100% + 8px)' };
+        ? { right: '100%', bottom: `${rootBottom}px` }
+        : side === 'left'
+          ? { right: 'calc(100% + 8px)', bottom: `${rootBottom}px` }
+          : { left: 'calc(100% + 8px)', bottom: `${rootBottom}px` };
       const menuStyle = side === 'left' ? { left: 0 } : { right: 0 };
       // 偷吃时每帧上下震一下：上、下、上、下。两套吃饭动画整体往右挪一点。
       const snackBob = state === 'eating' && eatKind === 'snack' ? (eatFrame % 2 === 0 ? -SNACK_BOB : SNACK_BOB) : 0;
