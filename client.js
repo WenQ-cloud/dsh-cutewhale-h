@@ -362,7 +362,6 @@ return { buildRects: buildRects, W: ART_W, H: ART_H };
       const [eatKind, setEatKind] = React.useState('meal');
       const [now, setNow] = React.useState(() => Date.now());
       const rootRef = React.useRef(null);
-      const [cardHeight, setCardHeight] = React.useState(96);
       const prevRunning = React.useRef(undefined);
       const turnStart = React.useRef(0);
 
@@ -595,17 +594,32 @@ return { buildRects: buildRects, W: ART_W, H: ART_H };
       // variable measures the whole composer seat, todo dock included, so using
       // it pushed the mascot below the card whenever the task list appeared and
       // stretched the message scroll area with it.
+      //
+      // Applied directly to the DOM inside a layout effect so a new input line
+      // (Shift+Enter) cannot leave the mascot one frame behind, and a
+      // ResizeObserver keeps up with changes that do not re-render us.
+      const placeRoot = React.useCallback(() => {
+        const root = rootRef.current;
+        if (root === null) return;
+        const card = root.closest('[data-composer-card]');
+        if (card === null) return;
+        const height = Math.round(card.getBoundingClientRect().height);
+        if (height <= 0) return;
+        const base = mode === 'rest' ? 26 : 8;
+        const next = `${base - height}px`;
+        if (root.style.bottom !== next) root.style.bottom = next;
+      }, [mode]);
+
+      React.useLayoutEffect(() => {
+        placeRoot();
+      });
+
       React.useEffect(() => {
         const root = rootRef.current;
         if (root === null) return undefined;
         const card = root.closest('[data-composer-card]');
         if (card === null || typeof ResizeObserver === 'undefined') return undefined;
-        const read = () => {
-          const height = card.getBoundingClientRect().height;
-          if (height > 0) setCardHeight(Math.round(height));
-        };
-        read();
-        const observer = new ResizeObserver(read);
+        const observer = new ResizeObserver(() => placeRoot());
         observer.observe(card);
         return () => observer.disconnect();
       }, []);
@@ -731,15 +745,13 @@ return { buildRects: buildRects, W: ART_W, H: ART_H };
         }
       };
 
-      // Bottom offset is measured from the composer card's top edge, which is
-      // where the overlay anchor sits, so negative values put the mascot's feet
-      // near the card's bottom edge.
-      const rootBottom = (restingMode ? 26 : 8) - cardHeight;
+      // Bottom offset is measured from the composer card's top edge, where the
+      // overlay anchor sits; placeRoot() writes it straight to the DOM.
       const sideStyle = restingMode
-        ? { right: '100%', bottom: `${rootBottom}px` }
+        ? { right: '100%' }
         : side === 'left'
-          ? { right: 'calc(100% + 8px)', bottom: `${rootBottom}px` }
-          : { left: 'calc(100% + 8px)', bottom: `${rootBottom}px` };
+          ? { right: 'calc(100% + 8px)' }
+          : { left: 'calc(100% + 8px)' };
       const menuStyle = side === 'left' ? { left: 0 } : { right: 0 };
       // 偷吃时每帧上下震一下：上、下、上、下。两套吃饭动画整体往右挪一点。
       const snackBob = state === 'eating' && eatKind === 'snack' ? (eatFrame % 2 === 0 ? -SNACK_BOB : SNACK_BOB) : 0;
